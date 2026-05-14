@@ -37,3 +37,9 @@ fi
 echo "Installed clip2path."
 echo "Binary: $BIN_DIR/clip2path"
 echo "Desktop entry: $APP_DIR/clip2path.desktop"
+
+pkill -f "$BIN_DIR/clip2path" 2>/dev/null || true
+
+nohup "$BIN_DIR/clip2path" >/dev/null 2>&1 &
+
+echo "clip2path started in background."
