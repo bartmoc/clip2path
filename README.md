@@ -1,5 +1,7 @@
 # clip2path
 
+![clip2path](assets/flavor.png)
+
 ## Clipboard Image To Path for Linux
 
 A background daemon for Linux that monitors the system clipboard. When you copy an image (screenshot, browser image, etc.), `clip2path` saves it to disk as a PNG and replaces the clipboard content so that pasting into a terminal yields the file path — while GUI applications can still receive the image itself.
