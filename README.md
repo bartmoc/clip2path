@@ -88,6 +88,8 @@ The tray icon (blue clipboard) sits in your KDE system tray with:
 - **Copy last image path** — re-copies the most recent path to clipboard
 - **Clear generated files** — removes only clip2path-generated files
 
+![Tray menu](assets/tray-menu.png)
+
 ## Configuration
 
 `~/.config/clip2path/config.ini`:
