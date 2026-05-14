@@ -25,6 +25,8 @@ jobs:
         run: cmake --build build --parallel $(nproc)
 
       - name: Verify binary
+        env:
+          QT_QPA_PLATFORM: offscreen
         run: |
           ./build/clip2path --version
           ./build/clip2path --help

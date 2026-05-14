@@ -5,15 +5,15 @@
 
 #include <QApplication>
 #include <QCommandLineParser>
-#include <QCoreApplication>
 #include <QLoggingCategory>
 
 int main(int argc, char *argv[])
 {
-    QCoreApplication cliApp(argc, argv);
-    cliApp.setApplicationName("clip2path");
-    cliApp.setApplicationVersion("0.1.0");
-    cliApp.setOrganizationName("clip2path");
+    QApplication app(argc, argv);
+    app.setApplicationName("clip2path");
+    app.setApplicationVersion("0.1.0");
+    app.setOrganizationName("clip2path");
+    app.setQuitOnLastWindowClosed(false);
 
     QCommandLineParser parser;
     parser.setApplicationDescription("Clipboard Image To Path — converts clipboard images to file paths");
@@ -38,16 +38,13 @@ int main(int argc, char *argv[])
     parser.addOption(onceOption);
     parser.addOption(printConfigOption);
 
-    parser.process(cliApp);
+    parser.process(app);
 
     if (parser.isSet(printConfigOption)) {
         ConfigService cs;
         qInfo() << "Config file:" << cs.load().outputDir;
         return 0;
     }
-
-    QApplication app(argc, argv);
-    app.setQuitOnLastWindowClosed(false);
 
     QLoggingCategory::setFilterRules("clip2path.*.debug=true");
 
