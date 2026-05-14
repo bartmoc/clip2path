@@ -53,3 +53,7 @@ compile_commands.json
 *.AppImage
 *.tar.gz
 *.tar.xz
+
+# Design specs (local only)
+clip2path.md
+clip2path_v2_clipboard_mode.md
