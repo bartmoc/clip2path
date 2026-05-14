@@ -1,0 +1,9 @@
+[Desktop Entry]
+Type=Application
+Name=Clipboard Image To Path
+Comment=Converts clipboard images into file paths
+Exec=clip2path
+Icon=clip2path
+Terminal=false
+Categories=Utility;Qt;
+StartupNotify=false
