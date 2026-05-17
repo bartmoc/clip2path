@@ -10,8 +10,15 @@
 
 #include <sys/stat.h>
 
+namespace {
+QString normalizeDirectoryPath(const QString &path)
+{
+    return path.isEmpty() ? QDir::currentPath() : QDir::cleanPath(path);
+}
+}
+
 ImageStore::ImageStore(const QString &outputDir, const QString &format)
-    : m_outputDir(outputDir)
+    : m_outputDir(normalizeDirectoryPath(outputDir))
     , m_format(format)
 {
 }
@@ -28,8 +35,8 @@ std::optional<QString> ImageStore::storeImage(const QImage &image)
     }
 
     QString filename = generateFilename();
-    QString finalPath = m_outputDir + "/" + filename;
-    QString tmpPath = m_outputDir + "/." + filename + ".tmp";
+    QString finalPath = pathInOutputDir(filename);
+    QString tmpPath = pathInOutputDir("." + filename + ".tmp");
 
     QByteArray imageData;
     {
@@ -68,6 +75,11 @@ std::optional<QString> ImageStore::storeImage(const QImage &image)
     m_lastPath = finalPath;
     qCInfo(lcStorage) << "Image saved:" << finalPath;
     return finalPath;
+}
+
+QString ImageStore::pathInOutputDir(const QString &fileName) const
+{
+    return QDir::cleanPath(QDir(m_outputDir).filePath(fileName));
 }
 
 bool ImageStore::ensureDirectoryExists() const

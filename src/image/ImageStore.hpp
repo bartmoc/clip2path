@@ -14,6 +14,7 @@ public:
     QString lastPath() const { return m_lastPath; }
 
 private:
+    QString pathInOutputDir(const QString &fileName) const;
     QString generateFilename() const;
     bool ensureDirectoryExists() const;
 
